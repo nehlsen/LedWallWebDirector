@@ -16,7 +16,7 @@ export default function devices({allDevices}) {
                 <title>Devices</title>
             </Head>
             <DeviceSelector devices={allDevices} selectCallback={(device: Device) => setDevice(device)} />
-            <DeviceStatus device={device} />
+            {device ? <DeviceStatus device={device} /> : <>NO DEVICE SELECTED</>}
         </Layout>
     )
 }

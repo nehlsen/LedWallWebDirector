@@ -8,14 +8,6 @@ interface Params {
 export default function DeviceStatus({device}: Params) {
     const {systemInfo, isLoading, isError} = useLedWallSystemInfo(device);
 
-    if (!device) {
-        return (
-            <div>
-                no device selected
-            </div>
-        )
-    }
-
     if (isLoading) {
         return (<div>loading...</div>)
     }

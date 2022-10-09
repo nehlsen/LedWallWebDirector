@@ -8,14 +8,6 @@ export function useLedWallSystemInfo(device: Device): {
     isLoading: boolean,
     isError: boolean
 } {
-    // if (!device) {
-    //     return {
-    //         systemInfo: null,
-    //         isLoading: false,
-    //         isError: true
-    //     }
-    // }
-
     const { data, error } = useSWR<LedWallSystemInfo>(
         `http://${device.hostname}/api/v2/system/info`,
         fetcher,
