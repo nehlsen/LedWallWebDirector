@@ -6,6 +6,7 @@ import {getDevices} from "../lib/devices";
 import {useState} from "react";
 import {Device} from "../lib/Device";
 import DeviceStatus from "../components/DeviceStatus";
+import LedWallPresets from "../components/LedWallPresets";
 
 export default function devices({allDevices}) {
     const [device, setDevice] = useState<Device|null>(null);
@@ -17,6 +18,7 @@ export default function devices({allDevices}) {
             </Head>
             <DeviceSelector devices={allDevices} selectCallback={(device: Device) => setDevice(device)} />
             {device ? <DeviceStatus device={device} /> : <>NO DEVICE SELECTED</>}
+            {device ? <LedWallPresets device={device} /> : <></>}
         </Layout>
     )
 }
