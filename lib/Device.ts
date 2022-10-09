@@ -1,5 +1,5 @@
 export interface Device {
-    id: String,
-    name: String,
-    hostname: String
+    id: string,
+    name: string,
+    hostname: string
 }

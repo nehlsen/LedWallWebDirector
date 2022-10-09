@@ -27,7 +27,7 @@ export function useLedWallPresets(device: Device): {
     isLoading: boolean,
     isError: boolean
 } {
-    const { data, error } = useSWR<{presets: String[]}>(
+    const { data, error } = useSWR<{presets: string[]}>(
         `http://${device.hostname}/api/v2/led/presets`,
         fetcher,
         { refreshInterval: 60000 }
