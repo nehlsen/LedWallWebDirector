@@ -7,6 +7,7 @@ import {useState} from "react";
 import {Device} from "../lib/Device";
 import DeviceStatus from "../components/DeviceStatus";
 import LedWallPresets from "../components/LedWallPresets";
+import DeviceSystemInfo from "../components/DeviceSystemInfo";
 
 export default function devices({allDevices}) {
     const [device, setDevice] = useState<Device|null>(null);
@@ -17,8 +18,10 @@ export default function devices({allDevices}) {
                 <title>Devices</title>
             </Head>
             <DeviceSelector devices={allDevices} selectCallback={(device: Device) => setDevice(device)} />
-            {device ? <DeviceStatus device={device} /> : <>NO DEVICE SELECTED</>}
+            {device ? <h2>{device.name}</h2> : <>NO DEVICE SELECTED</>}
+            {device ? <DeviceStatus device={device} /> : <></>}
             {device ? <LedWallPresets device={device} /> : <></>}
+            {device ? <DeviceSystemInfo device={device} /> : <></>}
         </Layout>
     )
 }
