@@ -1,5 +1,6 @@
 import {Device} from "../lib/Device";
 import {useLedWallSystemInfo} from "../lib/LedWallApi";
+import {Loading} from "@nextui-org/react";
 
 interface Params {
     device: Device
@@ -9,7 +10,7 @@ export default function DeviceStatus({device}: Params) {
     const {systemInfo, isLoading, isError} = useLedWallSystemInfo(device);
 
     if (isLoading) {
-        return (<div>loading...</div>)
+        return (<Loading />)
     }
     if (isError) {
         return (<div>ERROR</div>)
