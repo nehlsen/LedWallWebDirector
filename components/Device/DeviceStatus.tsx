@@ -1,5 +1,5 @@
-import {Device} from "../lib/Device";
-import {useLedWallSystemInfo} from "../lib/LedWallApi";
+import {Device} from "../../lib/Device";
+import {useLedWallSystemInfo} from "../../lib/LedWallApi";
 import {Avatar, Loading} from "@nextui-org/react";
 
 interface Params {

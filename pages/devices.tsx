@@ -1,13 +1,13 @@
 import Layout from "../components/layout";
 import Head from "next/head";
-import DeviceSelector from "../components/DeviceSelector";
+import DeviceSelector from "../components/Device/DeviceSelector";
 import {GetStaticProps} from "next";
 import {getDevices} from "../lib/devices";
 import {useState} from "react";
 import {Device} from "../lib/Device";
-import DeviceStatus from "../components/DeviceStatus";
+import DeviceStatus from "../components/Device/DeviceStatus";
 import LedWallPresets from "../components/LedWallPresets";
-import DeviceSystemInfo from "../components/DeviceSystemInfo";
+import DeviceSystemInfo from "../components/Device/DeviceSystemInfo";
 
 export default function devices({allDevices}) {
     const [device, setDevice] = useState<Device|null>(null);

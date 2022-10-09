@@ -1,4 +1,4 @@
-import {Device} from "../lib/Device";
+import {Device} from "../../lib/Device";
 
 interface Params {
     devices: Device[],
