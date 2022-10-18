@@ -9,6 +9,7 @@ import LedWallPresets from "../components/LedWallPresets";
 import DeviceSystemInfo from "../components/Device/DeviceSystemInfo";
 import {GetStaticProps} from "next";
 import {getDevices} from "../lib/devices";
+import TopBar from "../components/TopBar";
 
 export default function Home({allDevices}) {
     const [device, setDevice] = useState<Device|null>(null);
@@ -19,6 +20,7 @@ export default function Home({allDevices}) {
                 <Head>
                     <title>{device.name}</title>
                 </Head>
+                <TopBar device={device} />
                 <h2>{device.name}</h2>
                 <DeviceStatus device={device} />
                 <LedWallMode device={device} />
@@ -33,6 +35,7 @@ export default function Home({allDevices}) {
             <Head>
                 <title>Devices</title>
             </Head>
+            <TopBar />
             <DeviceSelector devices={allDevices} selectCallback={(device: Device) => setDevice(device)} />
         </Layout>
     )
