@@ -70,3 +70,21 @@ export async function activateLedWallPreset(device: Device, preset: LedWallPrese
 
     return response.json();
 }
+
+export function useLedWallMode(device: Device): {
+    mode: LedWallMode,
+    isLoading: boolean,
+    isError: boolean
+} {
+    const { data, error } = useSWR<LedWallMode>(
+        `http://${device.hostname}/api/v2/led/mode`,
+        fetcher,
+        { refreshInterval: 60000 }
+    );
+
+    return {
+        mode: data,
+        isLoading: !error && !data,
+        isError: error
+    }
+}

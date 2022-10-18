@@ -8,6 +8,7 @@ import {Device} from "../lib/Device";
 import DeviceStatus from "../components/Device/DeviceStatus";
 import LedWallPresets from "../components/LedWallPresets";
 import DeviceSystemInfo from "../components/Device/DeviceSystemInfo";
+import LedWallMode from "../components/LedWallMode";
 
 export default function devices({allDevices}) {
     const [device, setDevice] = useState<Device|null>(null);
@@ -20,6 +21,7 @@ export default function devices({allDevices}) {
             <DeviceSelector devices={allDevices} selectCallback={(device: Device) => setDevice(device)} />
             {device ? <h2>{device.name}</h2> : <>NO DEVICE SELECTED</>}
             {device ? <DeviceStatus device={device} /> : <></>}
+            {device ? <LedWallMode device={device} /> : <></>}
             {device ? <LedWallPresets device={device} /> : <></>}
             {device ? <DeviceSystemInfo device={device} /> : <></>}
         </Layout>
