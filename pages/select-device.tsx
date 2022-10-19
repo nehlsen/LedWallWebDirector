@@ -5,7 +5,7 @@ import Content from "../components/Content";
 
 export default function SelectDevice() {
     return (
-        <Layout home>
+        <Layout>
             <Head>
                 <title>Devices</title>
             </Head>

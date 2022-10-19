@@ -1,16 +1,16 @@
 import Layout from "../components/layout";
 import Head from "next/head";
 import Content from "../components/Content";
-import LedWallMode from "../components/LedWallMode";
+import DeviceSystemInfo from "../components/Device/DeviceSystemInfo";
 
-export default function ModeOptions() {
+export default function Config() {
     return (
         <Layout>
             <Head>
-                <title>Mode Options</title>
+                <title>Config</title>
             </Head>
             <Content>
-                <LedWallMode />
+                <DeviceSystemInfo />
             </Content>
         </Layout>
     )

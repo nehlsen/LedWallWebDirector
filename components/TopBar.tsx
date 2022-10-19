@@ -1,4 +1,3 @@
-import {Device} from "../lib/Device";
 import Link from "next/link";
 import {useDeviceContext} from "./DeviceContext";
 
@@ -7,7 +6,7 @@ export default function TopBar() {
 
     const menu = (
         <div className="flex justify-end">
-            <Link href="/" replace>
+            <Link href="/select-device" replace>
                 <a>DEV</a>
             </Link>
             <Link href="/preset" replace>

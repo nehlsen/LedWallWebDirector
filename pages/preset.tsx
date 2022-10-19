@@ -1,16 +1,16 @@
+import LedWallPresets from "../components/LedWallPresets";
 import Layout from "../components/layout";
 import Head from "next/head";
 import Content from "../components/Content";
-import LedWallMode from "../components/LedWallMode";
 
-export default function ModeOptions() {
+export default function PresetSelector() {
     return (
         <Layout>
             <Head>
-                <title>Mode Options</title>
+                <title>Presets</title>
             </Head>
             <Content>
-                <LedWallMode />
+                <LedWallPresets />
             </Content>
         </Layout>
     )

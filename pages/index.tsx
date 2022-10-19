@@ -1,15 +1,23 @@
 import Head from 'next/head'
 import Layout from '../components/layout'
 import DeviceStatus from "../components/Device/DeviceStatus";
-import LedWallMode from "../components/LedWallMode";
-import LedWallPresets from "../components/LedWallPresets";
-import DeviceSystemInfo from "../components/Device/DeviceSystemInfo";
 import {useDeviceContext} from "../components/DeviceContext";
 import Link from "next/link";
 import Content from "../components/Content";
+import {useEffect} from "react";
+import {useRouter} from "next/router";
 
 export default function Home() {
     const deviceContext = useDeviceContext();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!deviceContext.device) {
+            router.push('/select-device');
+        }/* else {
+            router.push('/preset');
+        }*/
+    }, [deviceContext.device]);
 
     if (deviceContext.device) {
         return (
@@ -20,22 +28,16 @@ export default function Home() {
 
                 <h2>{deviceContext.device.name}</h2>
                 <DeviceStatus />
-                <LedWallMode />
-                <LedWallPresets />
-                <DeviceSystemInfo />
             </Layout>
         )
     }
 
     return (
-        <Layout home>
+        <Layout>
             <Head>
                 <title>Devices</title>
             </Head>
             <Content>
-                <div>
-                    no device ...
-                </div>
                 <Link href="/select-device">
                     <a>Select Device</a>
                 </Link>

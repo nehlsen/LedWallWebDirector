@@ -6,11 +6,11 @@ import {useRouter} from "next/router";
 export default function DeviceSelector() {
     const deviceContext = useDeviceContext();
     const allDevices = getDevices()
-    const route = useRouter();
+    const router = useRouter();
 
     const onDeviceSelected = (device: Device) => {
         deviceContext.setDevice(device);
-        route.push('/');
+        router.push('/');
     };
 
     return (
