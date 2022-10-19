@@ -1,7 +1,10 @@
 import {Device} from "../lib/Device";
 import Link from "next/link";
+import {useDeviceContext} from "./DeviceContext";
 
-export default function TopBar({device}: {device?: Device}) {
+export default function TopBar() {
+    const deviceContext = useDeviceContext();
+
     const menu = (
         <div className="flex justify-end">
             <Link href="/" replace>
@@ -21,12 +24,12 @@ export default function TopBar({device}: {device?: Device}) {
 
     return (
         <header className="text-base font-medium text-gray-500 border-b-2 border-gray-100 p-3 mb-2 flex">
-            {device ?
-                <div>{device.name}</div>
+            {deviceContext.device ?
+                <div>{deviceContext.device.name}</div>
                 :
                 <div>LedWall Web-Director</div>
             }
-            {device ? menu : <></>}
+            {deviceContext.device ? menu : <></>}
         </header>
     );
 }
