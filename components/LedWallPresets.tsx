@@ -1,13 +1,10 @@
-import {Device} from "../lib/Device";
 import {activateLedWallPreset, useLedWallPresets} from "../lib/LedWallApi";
 import {Button, Loading} from "@nextui-org/react";
+import {useDeviceContext} from "./DeviceContext";
 
-interface Params {
-    device: Device
-}
-
-export default function LedWallPresets({device}: Params) {
-    const {presets, isLoading, isError} = useLedWallPresets(device);
+export default function LedWallPresets() {
+    const deviceContext = useDeviceContext();
+    const {presets, isLoading, isError} = useLedWallPresets(deviceContext.device);
 
     if (isLoading) {
         return (<Loading />)
@@ -23,7 +20,7 @@ export default function LedWallPresets({device}: Params) {
                 return (
                     <div key={index}>
                         {preset.name}
-                        <Button onClick={() => activateLedWallPreset(device, preset)}>Activate!</Button>
+                        <Button onClick={() => activateLedWallPreset(deviceContext.device, preset)}>Activate!</Button>
                     </div>
                 )
             })}

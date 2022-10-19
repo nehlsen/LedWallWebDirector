@@ -1,14 +1,11 @@
-import {Device} from "../lib/Device";
 import {useLedWallMode} from "../lib/LedWallApi";
 import {Loading} from "@nextui-org/react";
 import ModeOptions from "./Mode/ModeOptions";
+import {useDeviceContext} from "./DeviceContext";
 
-interface Params {
-    device: Device
-}
-
-export default function LedWallMode({device}: Params) {
-    const {mode, isLoading, isError} = useLedWallMode(device);
+export default function LedWallMode() {
+    const deviceContext = useDeviceContext();
+    const {mode, isLoading, isError} = useLedWallMode(deviceContext.device);
 
     if (isLoading) {
         return (<Loading />)

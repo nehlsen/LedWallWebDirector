@@ -1,13 +1,10 @@
-import {Device} from "../../lib/Device";
 import {useLedWallSystemInfo} from "../../lib/LedWallApi";
 import {Loading} from "@nextui-org/react";
+import {useDeviceContext} from "../DeviceContext";
 
-interface Params {
-    device: Device
-}
-
-export default function DeviceSystemInfo({device}: Params) {
-    const {systemInfo, isLoading, isError} = useLedWallSystemInfo(device);
+export default function DeviceSystemInfo() {
+    const deviceContext = useDeviceContext();
+    const {systemInfo, isLoading, isError} = useLedWallSystemInfo(deviceContext.device);
 
     if (isLoading) {
         return (<Loading />)
@@ -22,7 +19,7 @@ export default function DeviceSystemInfo({device}: Params) {
             <div>
                 <dl>
                     <dt>Name</dt>
-                    <dd>{device.name}</dd>
+                    <dd>{deviceContext.device.name}</dd>
 
                     <dt>Firmware Version</dt>
                     <dd>{systemInfo.projectVersion}</dd>
