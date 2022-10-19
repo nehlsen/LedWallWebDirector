@@ -1,13 +1,10 @@
-import {Device} from "../../lib/Device";
 import {useLedWallSystemInfo} from "../../lib/LedWallApi";
 import {Avatar, Loading} from "@nextui-org/react";
+import {useDeviceContext} from "../DeviceContext";
 
-interface Params {
-    device: Device
-}
-
-export default function DeviceStatus({device}: Params) {
-    const {isLoading, isError} = useLedWallSystemInfo(device);
+export default function DeviceStatus() {
+    const deviceContext = useDeviceContext();
+    const {isLoading, isError} = useLedWallSystemInfo(deviceContext.device);
 
     if (isLoading) {
         return (<Loading />)
