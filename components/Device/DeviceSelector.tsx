@@ -18,12 +18,9 @@ export default function DeviceSelector() {
             <h2>device selector</h2>
             {allDevices.map((device: Device) => {
                 return (
-                    <div>
+                    <button key={device.id} onClick={() => onDeviceSelected(device)} className={'btn-primary'}>
                         {device.name}
-                        <button onClick={() => onDeviceSelected(device)} className="rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm">
-                            Use THIS
-                        </button>
-                    </div>
+                    </button>
                 )
             })}
         </>

@@ -1,5 +1,5 @@
 import {activateLedWallPreset, useLedWallPresets} from "../lib/LedWallApi";
-import {Button, Loading} from "@nextui-org/react";
+import {Loading} from "@nextui-org/react";
 import {useDeviceContext} from "./DeviceContext";
 
 export default function LedWallPresets() {
@@ -18,10 +18,9 @@ export default function LedWallPresets() {
             <h2>Presets</h2>
             {presets.map((preset, index) => {
                 return (
-                    <div key={index}>
+                    <button key={index} onClick={() => activateLedWallPreset(deviceContext.device, preset)} className={'btn-primary'}>
                         {preset.name}
-                        <Button onClick={() => activateLedWallPreset(deviceContext.device, preset)}>Activate!</Button>
-                    </div>
+                    </button>
                 )
             })}
         </div>
