@@ -11,7 +11,7 @@ export default function Layout({
   home?: boolean
 }) {
   return (
-    <div>
+    <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -39,6 +39,6 @@ export default function Layout({
           </Link>
         </div>
       )}
-    </div>
+    </>
   )
 }

@@ -1,31 +1,28 @@
 import Head from 'next/head'
 import Layout from '../components/layout'
-import {useState} from "react";
-import {Device} from "../lib/Device";
-import DeviceSelector from "../components/Device/DeviceSelector";
 import DeviceStatus from "../components/Device/DeviceStatus";
 import LedWallMode from "../components/LedWallMode";
 import LedWallPresets from "../components/LedWallPresets";
 import DeviceSystemInfo from "../components/Device/DeviceSystemInfo";
-import {GetStaticProps} from "next";
-import {getDevices} from "../lib/devices";
-import TopBar from "../components/TopBar";
+import {useDeviceContext} from "../components/DeviceContext";
+import Link from "next/link";
+import Content from "../components/Content";
 
-export default function Home({allDevices}) {
-    const [device, setDevice] = useState<Device|null>(null);
+export default function Home() {
+    const deviceContext = useDeviceContext();
 
-    if (device) {
+    if (deviceContext.device) {
         return (
             <Layout>
                 <Head>
-                    <title>{device.name}</title>
+                    <title>{deviceContext.device.name}</title>
                 </Head>
-                <TopBar device={device} />
-                <h2>{device.name}</h2>
-                <DeviceStatus device={device} />
-                <LedWallMode device={device} />
-                <LedWallPresets device={device} />
-                <DeviceSystemInfo device={device} />
+
+                <h2>{deviceContext.device.name}</h2>
+                <DeviceStatus />
+                <LedWallMode />
+                <LedWallPresets />
+                <DeviceSystemInfo />
             </Layout>
         )
     }
@@ -35,17 +32,14 @@ export default function Home({allDevices}) {
             <Head>
                 <title>Devices</title>
             </Head>
-            <TopBar />
-            <DeviceSelector devices={allDevices} selectCallback={(device: Device) => setDevice(device)} />
+            <Content>
+                <div>
+                    no device ...
+                </div>
+                <Link href="/select-device">
+                    <a>Select Device</a>
+                </Link>
+            </Content>
         </Layout>
     )
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-    const allDevices = getDevices()
-    return {
-        props: {
-            allDevices
-        }
-    }
 }

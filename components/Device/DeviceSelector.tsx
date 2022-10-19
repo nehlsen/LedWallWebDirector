@@ -14,7 +14,7 @@ export default function DeviceSelector() {
     };
 
     return (
-        <div className="mx-2 text-base">
+        <>
             <h2>device selector</h2>
             {allDevices.map((device: Device) => {
                 return (
@@ -26,6 +26,6 @@ export default function DeviceSelector() {
                     </div>
                 )
             })}
-        </div>
+        </>
     )
 }
