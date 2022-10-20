@@ -26,8 +26,10 @@ export default function Home() {
                     <title>{deviceContext.device.name}</title>
                 </Head>
 
-                <h2>{deviceContext.device.name}</h2>
-                <DeviceStatus />
+                <Content>
+                    <h2>{deviceContext.device.name}</h2>
+                    <DeviceStatus />
+                </Content>
             </Layout>
         )
     }

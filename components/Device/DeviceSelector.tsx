@@ -14,15 +14,15 @@ export default function DeviceSelector() {
     };
 
     return (
-        <>
-            <h2>device selector</h2>
+        <div className="flex flex-col gap-y-2">
+            <h2 className="text-base font-medium">Select a Device</h2>
             {allDevices.map((device: Device) => {
                 return (
-                    <button key={device.id} onClick={() => onDeviceSelected(device)} className={'btn-primary'}>
+                    <button key={device.id} onClick={() => onDeviceSelected(device)} className="btn-primary">
                         {device.name}
                     </button>
                 )
             })}
-        </>
+        </div>
     )
 }

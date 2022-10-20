@@ -14,8 +14,8 @@ export default function LedWallPresets() {
     }
 
     return (
-        <div>
-            <h2>Presets</h2>
+        <div className="flex flex-col gap-y-2">
+            <h2 className="text-base font-medium">Presets</h2>
             {presets.map((preset, index) => {
                 return (
                     <button key={index} onClick={() => activateLedWallPreset(deviceContext.device, preset)} className={'btn-primary'}>

@@ -1,33 +1,40 @@
 import Link from "next/link";
 import {useDeviceContext} from "./DeviceContext";
+import Image from "next/image";
+import {AdjustmentsHorizontalIcon, BanknotesIcon, Cog6ToothIcon} from "@heroicons/react/24/outline";
+
+function MenuItem({href, label, icon}: {href: string, label?: string, icon?: React.ReactNode}) {
+    return (
+        <Link href={href} replace>
+            <a className="flex-1 w-7 text-gray-500 hover:text-gray-800 mx-2">
+                {icon ? icon : ""}
+                {label ? label : ""}
+            </a>
+        </Link>
+    )
+}
 
 export default function TopBar() {
     const deviceContext = useDeviceContext();
 
     const menu = (
-        <div className="flex justify-end">
-            <Link href="/select-device" replace>
-                <a>DEV</a>
-            </Link>
-            <Link href="/preset" replace>
-                <a>Preset</a>
-            </Link>
-            <Link href="/mode" replace>
-                <a>Mode</a>
-            </Link>
-            <Link href="/config" replace>
-                <a>Config</a>
-            </Link>
+        <div className="flex-none flex flex-row items-center">
+            <MenuItem href={"/preset"} icon={(<BanknotesIcon />)} />
+            <MenuItem href={"/mode"} icon={(<AdjustmentsHorizontalIcon />)} />
+            <MenuItem href={"/config"} icon={(<Cog6ToothIcon />)} />
         </div>
     );
 
     return (
-        <header className="text-base font-medium text-gray-500 border-b-2 border-gray-100 p-3 mb-2 flex">
-            {deviceContext.device ?
-                <div>{deviceContext.device.name}</div>
-                :
-                <div>LedWall Web-Director</div>
-            }
+        <header className="p-2 lg:px-12 lg:py-4 mb-2 flex items-center bg-indigo-100 shadow-lg shadow-indigo-100/50">
+            <Link href={"/select-device"} replace>
+                <a className="leading-3"><Image property src={"/images/ledwall.svg"} width={28} height={28} className="flex-none" /></a>
+            </Link>
+
+            <div className="ml-2 flex-1 text-base font-medium text-gray-500">
+                {deviceContext.device ? deviceContext.device.name : "LedWall Web-Director"}
+            </div>
+
             {deviceContext.device ? menu : <></>}
         </header>
     );
