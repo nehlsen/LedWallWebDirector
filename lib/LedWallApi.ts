@@ -71,6 +71,24 @@ export async function activateLedWallPreset(device: Device, preset: LedWallPrese
     return response.json();
 }
 
+export function useLedWallModes(device: Device): {
+    modes: LedWallMode[],
+    isLoading: boolean,
+    isError: boolean
+} {
+    const { data, error } = useSWR<{modes: LedWallMode[]}>(
+        `http://${device.hostname}/api/v2/led/modes`,
+        fetcher,
+        { refreshInterval: 60000 }
+    );
+
+    return {
+        modes: data ? data.modes : [],
+        isLoading: !error && !data,
+        isError: error
+    }
+}
+
 export function useLedWallMode(device: Device): {
     mode: LedWallMode,
     isLoading: boolean,
@@ -87,4 +105,13 @@ export function useLedWallMode(device: Device): {
         isLoading: !error && !data,
         isError: error
     }
+}
+
+export async function activateLedWallMode(device: Device, mode: LedWallMode) {
+    const response = await fetch(`http://${device.hostname}/api/v2/led/mode`, {
+        method: 'POST',
+        body: JSON.stringify({name: mode.name})
+    });
+
+    return response.json();
 }
