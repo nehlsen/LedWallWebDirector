@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {useDeviceContext} from "./DeviceContext";
+import {useDeviceContext} from "../DeviceContext";
 import Image from "next/image";
 import {AdjustmentsHorizontalIcon, BanknotesIcon, Cog6ToothIcon} from "@heroicons/react/24/outline";
 

@@ -1,9 +1,9 @@
 import Head from 'next/head'
-import Layout from '../components/layout'
+import Layout from '../components/Ui/Layout'
 import DeviceStatus from "../components/Device/DeviceStatus";
 import {useDeviceContext} from "../components/DeviceContext";
 import Link from "next/link";
-import Content from "../components/Content";
+import Content from "../components/Ui/Content";
 import {useEffect} from "react";
 import {useRouter} from "next/router";
 

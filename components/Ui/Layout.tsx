@@ -6,7 +6,7 @@ export default function Layout({children}: { children: React.ReactNode }) {
     return (
         <>
             <Head>
-                <link rel="icon" href="/favicon.ico"/>
+                <link rel="icon" href="/public/favicon.ico"/>
                 <meta
                     name="description"
                     content="Learn how to build a personal website using Next.js"

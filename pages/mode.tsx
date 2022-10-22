@@ -1,6 +1,6 @@
-import Layout from "../components/layout";
+import Layout from "../components/Ui/Layout";
 import Head from "next/head";
-import Content from "../components/Content";
+import Content from "../components/Ui/Content";
 import LedWallMode from "../components/LedWallMode";
 
 export default function ModeOptions() {
