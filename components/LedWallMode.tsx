@@ -16,7 +16,7 @@ export default function LedWallMode() {
 
     return (
         <div>
-            <h2>Mode: {mode.name}</h2>
+            <h2 className={"text-base font-medium"}>Mode: {mode.name}</h2>
             <ModeOptions mode={mode} />
         </div>
     )

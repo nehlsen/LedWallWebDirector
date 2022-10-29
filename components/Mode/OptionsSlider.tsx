@@ -2,10 +2,10 @@ import Slider from "rc-slider";
 
 export function OptionsSlider({label, min, max, name, options, changeHandler}: {label: string, min: number, max: number, name: string, options: object, changeHandler: Function}) {
     return (
-        <div>
-            <span>{label}</span><span>{options[name]}</span>
+        <div className={"m-2"}>
+            <span>{label}</span> <span>{options[name]}</span>
 
-            <Slider min={min} max={max} step={1} defaultValue={options[name]} onAfterChange={(value: number) => {
+            <Slider min={min} max={max} step={1} defaultValue={options[name]} className={"mt-2"} onAfterChange={(value: number) => {
                 let ops = options;
                 ops[name] = value;
                 changeHandler(ops);

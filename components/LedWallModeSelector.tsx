@@ -25,13 +25,15 @@ export default function LedWallModeSelector() {
     return (
         <div className="flex flex-col gap-y-2">
             <h2 className="text-base font-medium">Select a Mode</h2>
-            {modes.map((mode: LedWallMode) => {
-                return (
-                    <button key={mode.index} onClick={() => onModeSelected(mode)} className="btn-primary">
-                        {mode.name}
-                    </button>
-                )
-            })}
+            <div className={"flex flex-wrap gap-3"}>
+                {modes.map((mode: LedWallMode) => {
+                    return (
+                        <button key={mode.index} onClick={() => onModeSelected(mode)} className="btn-primary w-24 h-24">
+                            {mode.name}
+                        </button>
+                    )
+                })}
+            </div>
         </div>
     );
 }
