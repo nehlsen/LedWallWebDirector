@@ -4,13 +4,24 @@ import useSWR from 'swr';
 import fetcher from "./fetch";
 import {LedWallPreset} from "./LedWallPreset";
 
+export function url(device: Device) {
+    return {
+        systemInfo: `http://${device.hostname}/api/v2/system/info`,
+        presets: `http://${device.hostname}/api/v2/led/presets`,
+        presetLoad: `http://${device.hostname}/api/v2/led/preset/load`,
+        modes: `http://${device.hostname}/api/v2/led/modes`,
+        mode: `http://${device.hostname}/api/v2/led/mode`,
+        modeOptions: `http://${device.hostname}/api/v2/led/mode/options`
+    };
+}
+
 export function useLedWallSystemInfo(device: Device): {
     systemInfo: LedWallSystemInfo,
     isLoading: boolean,
     isError: boolean
 } {
     const { data, error } = useSWR<LedWallSystemInfo>(
-        `http://${device.hostname}/api/v2/system/info`,
+        url(device).systemInfo,
         fetcher,
         { refreshInterval: 60000 }
     );
@@ -28,7 +39,7 @@ export function useLedWallPresets(device: Device): {
     isError: boolean
 } {
     const { data, error } = useSWR<{presets: string[]}>(
-        `http://${device.hostname}/api/v2/led/presets`,
+        url(device).presets,
         fetcher,
         { refreshInterval: 60000 }
     );
@@ -46,24 +57,8 @@ export function useLedWallPresets(device: Device): {
     }
 }
 
-/*
-
-POST http://{{host}}/api/v2/led/preset/load
-Content-Type: application/json
-
-{
-  "name": "lightningSparkle"
-}
-///
-{
-"name":"bar-baz-2ooo",
-"mode":"MultiBars",
-"options":{"fadeRate":200,"barTravelSpeed":245,"numberOfBars":3,"maximumFrameDelay":7}
-}
- */
-
 export async function activateLedWallPreset(device: Device, preset: LedWallPreset) {
-    const response = await fetch(`http://${device.hostname}/api/v2/led/preset/load`, {
+    const response = await fetch(url(device).presetLoad, {
         method: 'POST',
         body: JSON.stringify({name: preset.name})
     });
@@ -77,7 +72,7 @@ export function useLedWallModes(device: Device): {
     isError: boolean
 } {
     const { data, error } = useSWR<{modes: LedWallMode[]}>(
-        `http://${device.hostname}/api/v2/led/modes`,
+        url(device).modes,
         fetcher,
         { refreshInterval: 60000 }
     );
@@ -95,7 +90,7 @@ export function useLedWallMode(device: Device): {
     isError: boolean
 } {
     const { data, error } = useSWR<LedWallMode>(
-        `http://${device.hostname}/api/v2/led/mode`,
+        url(device).mode,
         fetcher,
         { refreshInterval: 60000 }
     );
@@ -108,9 +103,18 @@ export function useLedWallMode(device: Device): {
 }
 
 export async function activateLedWallMode(device: Device, mode: LedWallMode) {
-    const response = await fetch(`http://${device.hostname}/api/v2/led/mode`, {
+    const response = await fetch(url(device).mode, {
         method: 'POST',
         body: JSON.stringify({name: mode.name})
+    });
+
+    return response.json();
+}
+
+export async function setLedWallModeOptions(device: Device, modeOptions: object) {
+    const response = await fetch(url(device).modeOptions, {
+        method: 'POST',
+        body: JSON.stringify(modeOptions)
     });
 
     return response.json();

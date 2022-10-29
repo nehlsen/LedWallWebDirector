@@ -1,22 +1,12 @@
-interface Params {
-    mode: LedWallModeMultiBars
-}
+import {OptionsSlider, OptionsSlider8bit} from "./OptionsSlider";
 
-export default function MultiBarsOptions({mode}: Params) {
+export default function MultiBarsOptions({options, changeHandler}: {options: object, changeHandler: Function}) {
     return (
         <div>
-            <div>
-                <span>Fade rate</span><span>{mode.options.fadeRate}</span>
-            </div>
-            <div>
-                <span>Bar travel speed</span><span>{mode.options.barTravelSpeed}</span>
-            </div>
-            <div>
-                <span>Number of Bars</span><span>{mode.options.numberOfBars}</span>
-            </div>
-            <div>
-                <span>Max frame delay</span><span>{mode.options.maximumFrameDelay}</span>
-            </div>
+            <OptionsSlider8bit label={"Fade rate"} name={"fadeRate"} options={options} changeHandler={changeHandler} />
+            <OptionsSlider8bit label={"Bar travel speed"} name={"barTravelSpeed"} options={options} changeHandler={changeHandler} />
+            <OptionsSlider label={"Number of Bars"} min={1} max={10} name={"numberOfBars"} options={options} changeHandler={changeHandler} />
+            <OptionsSlider8bit label={"Max frame delay"} name={"maximumFrameDelay"} options={options} changeHandler={changeHandler} />
         </div>
     )
 }

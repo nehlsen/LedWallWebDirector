@@ -1,4 +1,5 @@
 import '../styles/global.css'
+import 'rc-slider/assets/index.css';
 import { AppProps } from 'next/app'
 import {NextUIProvider} from "@nextui-org/react";
 import {DeviceProvider} from "../components/DeviceContext";

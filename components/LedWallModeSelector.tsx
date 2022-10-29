@@ -1,13 +1,18 @@
-import {activateLedWallMode, useLedWallModes} from "../lib/LedWallApi";
+import {activateLedWallMode, url as LedWallApiUrl, useLedWallModes} from "../lib/LedWallApi";
 import {useDeviceContext} from "./DeviceContext";
 import {Loading} from "@nextui-org/react";
+import {useSWRConfig} from "swr";
 
 export default function LedWallModeSelector() {
     const deviceContext = useDeviceContext();
     const {modes, isLoading, isError} = useLedWallModes(deviceContext.device);
+    const { mutate } = useSWRConfig();
 
     const onModeSelected = (mode: LedWallMode) => {
-        activateLedWallMode(deviceContext.device, mode);
+        activateLedWallMode(deviceContext.device, mode)
+            .then((returnedMode) => {
+                mutate(LedWallApiUrl(deviceContext.device).mode, returnedMode, {revalidate: false});
+            });
     };
 
     if (isLoading) {
