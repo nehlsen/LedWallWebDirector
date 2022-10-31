@@ -3,10 +3,12 @@ import {LedWallSystemInfo} from "./LedWallSystemInfo";
 import useSWR from 'swr';
 import fetcher from "./fetch";
 import {LedWallPreset} from "./LedWallPreset";
+import {LedWallConfig} from "./LedWallConfig";
 
 export function url(device: Device) {
     return {
         systemInfo: `http://${device.hostname}/api/v2/system/info`,
+        config: `http://${device.hostname}/api/v2/config`,
         presets: `http://${device.hostname}/api/v2/led/presets`,
         presetLoad: `http://${device.hostname}/api/v2/led/preset/load`,
         modes: `http://${device.hostname}/api/v2/led/modes`,
@@ -28,6 +30,24 @@ export function useLedWallSystemInfo(device: Device): {
 
     return {
         systemInfo: data,
+        isLoading: !error && !data,
+        isError: error
+    }
+}
+
+export function useLedWallConfig(device: Device): {
+    config: LedWallConfig,
+    isLoading: boolean,
+    isError: boolean
+} {
+    const { data, error } = useSWR<LedWallConfig>(
+        url(device).config,
+        fetcher,
+        { refreshInterval: 60000 }
+    );
+
+    return {
+        config: data,
         isLoading: !error && !data,
         isError: error
     }

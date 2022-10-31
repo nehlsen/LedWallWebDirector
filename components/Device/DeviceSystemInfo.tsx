@@ -16,9 +16,9 @@ export default function DeviceSystemInfo() {
     return (
         <div>
             <h2>System Info</h2>
-            <div>
-                <dl>
-                    <dt>Name</dt>
+            <div className={"pl-4 inline-block"}>
+                <dl className={"grid grid-cols-2 gap-x-7"}>
+                    <dt className={"w-56"}>Name</dt>
                     <dd>{deviceContext.device.name}</dd>
 
                     <dt>Firmware Version</dt>
