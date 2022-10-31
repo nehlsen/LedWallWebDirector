@@ -1,0 +1,12 @@
+[
+  {
+    "id": "deviceOne",
+    "name": "one device in the basement",
+    "hostname": "192.168.47.11"
+  },
+  {
+    "id": "coolDevice",
+    "name": "a cool device in the living room",
+    "hostname": "cool-device.lan"
+  }
+]

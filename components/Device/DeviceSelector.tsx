@@ -1,17 +1,33 @@
 import {Device} from "../../lib/Device";
 import {useDeviceContext} from "../DeviceContext";
-import {getDevices} from "../../lib/devices";
 import {useRouter} from "next/router";
+import useSWR from "swr";
+import fetcher from "../../lib/fetch";
+import {Loading} from "@nextui-org/react";
 
 export default function DeviceSelector() {
     const deviceContext = useDeviceContext();
-    const allDevices = getDevices()
     const router = useRouter();
+
+    const { data, error } = useSWR<Device[]>(
+        '/api/device/',
+        fetcher,
+        { refreshInterval: 3600000 }
+    );
+    const isLoading = !error && !data;
+    const allDevices = data;
 
     const onDeviceSelected = (device: Device) => {
         deviceContext.setDevice(device);
         router.push('/');
     };
+
+    if (isLoading) {
+        return (<Loading />)
+    }
+    if (error) {
+        return (<div>ERROR</div>)
+    }
 
     return (
         <div className="flex flex-col gap-y-2">
