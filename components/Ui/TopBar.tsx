@@ -28,7 +28,7 @@ export default function TopBar() {
     return (
         <header className="p-2 lg:px-12 lg:py-4 mb-2 flex items-center bg-indigo-100 shadow-lg shadow-indigo-100/50">
             <Link href={"/select-device"} replace>
-                <a className="leading-3"><Image src={"/images/ledwall.svg"} width={28} height={28} className="flex-none" /></a>
+                <a className="leading-3"><Image src={"/images/ledwall.svg"} alt="logo" width={28} height={28} className="flex-none" /></a>
             </Link>
 
             <div className="ml-2 flex-1 text-base font-medium text-gray-500">
