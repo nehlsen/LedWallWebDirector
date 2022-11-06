@@ -1,9 +1,11 @@
-import {isModeBubbles, isModeMultiBars} from "../../lib/LedWallMode/LedWallModeUtils";
+import * as modeUtils from "../../lib/LedWallMode/LedWallModeUtils";
 import MultiBarsOptions from "./MultiBarsOptions";
 import {setLedWallModeOptions, url as LedWallApiUrl} from "../../lib/LedWallApi";
 import {useDeviceContext} from "../DeviceContext";
 import BubblesOptions from "./BubblesOptions";
 import {useSWRConfig} from "swr";
+import WaveOptions from "./WaveOptions";
+import {LedWallMode} from "../../lib/LedWallMode/LedWallMode";
 
 interface Params {
     mode: LedWallMode
@@ -20,13 +22,17 @@ export default function ModeOptions({mode}: Params) {
             });
     };
 
-    if (isModeMultiBars(mode)) {
+    if (modeUtils.isModeMultiBars(mode)) {
         return (
             <MultiBarsOptions options={mode.options} changeHandler={(options) => onChangeHandler(options)} />
         )
-    } else if (isModeBubbles(mode)) {
+    } else if (modeUtils.isModeBubbles(mode)) {
         return (
             <BubblesOptions options={mode.options} changeHandler={(options) => onChangeHandler(options)} />
+        )
+    } else if (modeUtils.isModeWave(mode)) {
+        return (
+            <WaveOptions options={mode.options} changeHandler={(options) => onChangeHandler(options)} />
         )
     } else {
         console.log('its a .... mode ...')

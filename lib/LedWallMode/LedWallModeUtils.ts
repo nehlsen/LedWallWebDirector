@@ -8,3 +8,6 @@ export function isModeMultiBars(mode: any): mode is LedWallModeMultiBars {
 export function isModeBubbles(mode: any): mode is LedWallModeBubbles {
     return mode.name === 'Bubbles';
 }
+export function isModeWave(mode: any): mode is LedWallModeWave {
+    return mode.name === 'Wave';
+}
