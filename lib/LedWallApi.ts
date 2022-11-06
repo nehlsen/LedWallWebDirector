@@ -6,7 +6,11 @@ import {LedWallPreset} from "./LedWallPreset";
 import {LedWallConfig} from "./LedWallConfig";
 import {LedWallMode} from "./LedWallMode/LedWallMode";
 
-export function url(device: Device) {
+export function url(device: Device|null) {
+    if (!device) {
+        return;
+    }
+
     return {
         systemInfo: `http://${device.hostname}/api/v2/system/info`,
         config: `http://${device.hostname}/api/v2/config`,
