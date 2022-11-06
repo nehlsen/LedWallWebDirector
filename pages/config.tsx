@@ -25,6 +25,11 @@ export default function Config() {
             <Content>
                 <DeviceOfflineGuard />
                 <DeviceSystemInfo />
+                <DeviceConfig />
+
+                <br/>
+                <PresetBackup />
+                <PresetRestore />
             </Content>
         </Layout>
     )

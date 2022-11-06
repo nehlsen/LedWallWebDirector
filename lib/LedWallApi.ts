@@ -16,6 +16,8 @@ export function url(device: Device|null) {
         config: `http://${device.hostname}/api/v2/config`,
         presets: `http://${device.hostname}/api/v2/led/presets`,
         presetLoad: `http://${device.hostname}/api/v2/led/preset/load`,
+        presetSave: `http://${device.hostname}/api/v2/led/preset/save`,
+        presetsDump: `http://${device.hostname}/api/v2/fs/presets.json`,
         modes: `http://${device.hostname}/api/v2/led/modes`,
         mode: `http://${device.hostname}/api/v2/led/mode`,
         modeOptions: `http://${device.hostname}/api/v2/led/mode/options`
@@ -91,6 +93,15 @@ export async function activateLedWallPreset(device: Device, preset: LedWallPrese
     return response.json();
 }
 
+export async function saveLedWallPreset(device: Device, presetName: string) {
+    const response = await fetch(url(device).presetSave, {
+        method: 'POST',
+        body: JSON.stringify({name: presetName})
+    });
+
+    return response.json();
+}
+
 export function useLedWallModes(device: Device): {
     modes: LedWallMode[],
     isLoading: boolean,
@@ -127,10 +138,10 @@ export function useLedWallMode(device: Device): {
     }
 }
 
-export async function activateLedWallMode(device: Device, mode: LedWallMode) {
+export async function activateLedWallMode(device: Device, mode: LedWallMode|string) {
     const response = await fetch(url(device).mode, {
         method: 'POST',
-        body: JSON.stringify({name: mode.name})
+        body: JSON.stringify({name: typeof mode === 'string' ? mode : mode.name})
     });
 
     return response.json();
