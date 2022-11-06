@@ -4,6 +4,7 @@ import useSWR from 'swr';
 import fetcher from "./fetch";
 import {LedWallPreset} from "./LedWallPreset";
 import {LedWallConfig} from "./LedWallConfig";
+import {LedWallMode} from "./LedWallMode/LedWallMode";
 
 export function url(device: Device) {
     return {

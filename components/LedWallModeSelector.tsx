@@ -2,6 +2,7 @@ import {activateLedWallMode, url as LedWallApiUrl, useLedWallModes} from "../lib
 import {useDeviceContext} from "./DeviceContext";
 import {Loading} from "@nextui-org/react";
 import {useSWRConfig} from "swr";
+import {LedWallMode} from "../lib/LedWallMode/LedWallMode";
 
 export default function LedWallModeSelector() {
     const deviceContext = useDeviceContext();

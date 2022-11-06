@@ -1,11 +1,10 @@
+import {LedWallMode} from "./LedWallMode";
 
-interface MultiBarsOptions {
-    fadeRate: number,
-    barTravelSpeed: number,
-    numberOfBars: number,
-    maximumFrameDelay: number,
-}
-
-interface LedWallModeMultiBars extends LedWallMode {
-    options: MultiBarsOptions
+export interface LedWallModeMultiBars extends LedWallMode {
+    options: {
+        fadeRate: number,
+        barTravelSpeed: number,
+        numberOfBars: number,
+        maximumFrameDelay: number,
+    }
 }
