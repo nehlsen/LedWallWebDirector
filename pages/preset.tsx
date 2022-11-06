@@ -9,8 +9,8 @@ import Link from "next/link";
 export default function PresetSelector() {
     const deviceContext = useDeviceContext();
     if (!deviceContext.device) {
-        return (<Link href={"/select-device"} replace>
-            <a>Please select a device first</a>
+        return (<Link replace href={"/select-device"}>
+            Please select a device first
         </Link>);
     }
 

@@ -41,7 +41,7 @@ export default function Home() {
             </Head>
             <Content>
                 <Link href="/select-device">
-                    <a>Select Device</a>
+                    Select Device
                 </Link>
             </Content>
         </Layout>

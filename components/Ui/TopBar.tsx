@@ -5,11 +5,9 @@ import {AdjustmentsHorizontalIcon, BanknotesIcon, Cog6ToothIcon} from "@heroicon
 
 function MenuItem({href, label, icon}: {href: string, label?: string, icon?: React.ReactNode}) {
     return (
-        <Link href={href} replace>
-            <a className="flex-1 w-7 text-gray-500 hover:text-gray-800 mx-2">
-                {icon ? icon : ""}
-                {label ? label : ""}
-            </a>
+        <Link replace href={href} className="flex-1 w-7 text-gray-500 hover:text-gray-800 mx-2">
+            {icon ? icon : ""}
+            {label ? label : ""}
         </Link>
     )
 }
@@ -27,8 +25,8 @@ export default function TopBar() {
 
     return (
         <header className="p-2 lg:px-12 lg:py-4 mb-2 flex items-center bg-indigo-100 shadow-lg shadow-indigo-100/50">
-            <Link href={"/select-device"} replace>
-                <a className="leading-3"><Image src={"/images/ledwall.svg"} alt="logo" width={28} height={28} className="flex-none" /></a>
+            <Link replace href={"/select-device"} className="leading-3">
+                <Image src={"/images/ledwall.svg"} alt="logo" width={28} height={28} className="flex-none" />
             </Link>
 
             <div className="ml-2 flex-1 text-base font-medium text-gray-500">
