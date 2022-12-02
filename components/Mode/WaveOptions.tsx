@@ -1,4 +1,4 @@
-import {OptionsSlider8bit} from "./OptionsSlider";
+import {OptionsSlider8bit} from "./Options/OptionsSlider";
 import {OptionsRange8bit} from "./OptionsRange";
 
 function scale (number, inMin, inMax, outMin, outMax) {

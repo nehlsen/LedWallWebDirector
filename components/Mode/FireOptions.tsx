@@ -1,4 +1,4 @@
-import {OptionsSlider8bit} from "./OptionsSlider";
+import {OptionsSlider8bit} from "./Options/OptionsSlider";
 
 export default function FireOptions({options, changeHandler}: {options: object, changeHandler: Function}) {
     return (

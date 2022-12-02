@@ -1,4 +1,4 @@
-import {OptionsSlider, OptionsSlider8bit} from "./OptionsSlider";
+import {OptionsSlider, OptionsSlider8bit} from "./Options/OptionsSlider";
 
 export default function MultiBarsOptions({options, changeHandler}: {options: object, changeHandler: Function}) {
     return (
