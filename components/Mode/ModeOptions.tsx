@@ -6,6 +6,9 @@ import BubblesOptions from "./BubblesOptions";
 import {useSWRConfig} from "swr";
 import WaveOptions from "./WaveOptions";
 import {LedWallMode} from "../../lib/LedWallMode/LedWallMode";
+import BarsOptions from "./BarsOptions";
+import FireworksOptions from "./FireworksOptions";
+import FireOptions from "./FireOptions";
 
 interface Params {
     mode: LedWallMode
@@ -26,13 +29,25 @@ export default function ModeOptions({mode}: Params) {
         return (
             <MultiBarsOptions options={mode.options} changeHandler={(options) => onChangeHandler(options)} />
         )
+    } else if (modeUtils.isModeBars(mode)) {
+        return (
+            <BarsOptions options={mode.options} changeHandler={(options) => onChangeHandler(options)} />
+        )
     } else if (modeUtils.isModeBubbles(mode)) {
         return (
             <BubblesOptions options={mode.options} changeHandler={(options) => onChangeHandler(options)} />
         )
+    } else if (modeUtils.isModeFireworks(mode)) {
+        return (
+            <FireworksOptions options={mode.options} changeHandler={(options) => onChangeHandler(options)} />
+        )
     } else if (modeUtils.isModeWave(mode)) {
         return (
             <WaveOptions options={mode.options} changeHandler={(options) => onChangeHandler(options)} />
+        )
+    } else if (modeUtils.isModeFire(mode)) {
+        return (
+            <FireOptions options={mode.options} changeHandler={(options) => onChangeHandler(options)} />
         )
     } else if (modeUtils.isModeStatus(mode)) {
         return (
