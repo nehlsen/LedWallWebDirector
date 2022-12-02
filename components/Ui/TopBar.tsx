@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {useDeviceContext} from "../DeviceContext";
 import Image from "next/image";
-import {AdjustmentsHorizontalIcon, BanknotesIcon, Cog6ToothIcon} from "@heroicons/react/24/outline";
+import {AdjustmentsHorizontalIcon, BanknotesIcon, ChartPieIcon, Cog6ToothIcon} from "@heroicons/react/24/outline";
 
 function MenuItem({href, label, icon}: {href: string, label?: string, icon?: React.ReactNode}) {
     return (
@@ -18,7 +18,8 @@ export default function TopBar() {
     const menu = (
         <div className="flex-none flex flex-row items-center">
             <MenuItem href={"/preset"} icon={(<BanknotesIcon />)} />
-            <MenuItem href={"/mode"} icon={(<AdjustmentsHorizontalIcon />)} />
+            <MenuItem href={"/mode"} icon={(<ChartPieIcon />)} />
+            <MenuItem href={"/mode-options"} icon={(<AdjustmentsHorizontalIcon />)} />
             <MenuItem href={"/config"} icon={(<Cog6ToothIcon />)} />
         </div>
     );
