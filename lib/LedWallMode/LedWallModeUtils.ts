@@ -1,7 +1,11 @@
 import {LedWallModeMultiBars} from "./LedWallModeMultiBars";
 import {LedWallModeWave} from "./LedWallModeWave";
 import {LedWallModeBubbles} from "./LedWallModeBubbles";
+import {LedWallMode} from "./LedWallMode";
 
+export function isModeStatus(mode: any): mode is LedWallMode {
+    return mode.name === 'Status';
+}
 export function isModeMultiBars(mode: any): mode is LedWallModeMultiBars {
     return mode.name === 'MultiBars';
 }

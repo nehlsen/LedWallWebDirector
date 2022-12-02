@@ -34,8 +34,10 @@ export default function ModeOptions({mode}: Params) {
         return (
             <WaveOptions options={mode.options} changeHandler={(options) => onChangeHandler(options)} />
         )
-    } else {
-        console.log('its a .... mode ...')
+    } else if (modeUtils.isModeStatus(mode)) {
+        return (
+            <div>This Mode has no Options</div>
+        )
     }
 
     return (
