@@ -9,6 +9,7 @@ import {LedWallMode} from "../../lib/LedWallMode/LedWallMode";
 import BarsOptions from "./BarsOptions";
 import FireworksOptions from "./FireworksOptions";
 import FireOptions from "./FireOptions";
+import TextOptions from "./TextOptions";
 
 interface Params {
     mode: LedWallMode
@@ -48,6 +49,10 @@ export default function ModeOptions({mode}: Params) {
     } else if (modeUtils.isModeFire(mode)) {
         return (
             <FireOptions options={mode.options} changeHandler={(options) => onChangeHandler(options)} />
+        )
+    } else if (modeUtils.isModeText(mode)) {
+        return (
+            <TextOptions options={mode.options} changeHandler={(options) => onChangeHandler(options)} />
         )
     } else if (modeUtils.isModeStatus(mode)) {
         return (

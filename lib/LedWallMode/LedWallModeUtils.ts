@@ -24,3 +24,6 @@ export function isModeWave(mode: any): mode is LedWallModeWave {
 export function isModeFire(mode: any): mode is LedWallModeWave {
     return mode.name === 'Fire';
 }
+export function isModeText(mode: any): mode is LedWallModeWave {
+    return mode.name === 'Text';
+}
