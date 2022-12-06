@@ -1,5 +1,5 @@
 import {OptionsSlider8bit} from "./Options/OptionsSlider";
-import {OptionsRange8bit} from "./OptionsRange";
+import {OptionsRange8bit} from "./Options/OptionsRange";
 
 function scale (number, inMin, inMax, outMin, outMax) {
     return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
