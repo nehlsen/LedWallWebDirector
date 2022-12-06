@@ -3,6 +3,7 @@ import {useDeviceContext} from "./DeviceContext";
 import {Loading} from "@nextui-org/react";
 import {useSWRConfig} from "swr";
 import {LedWallMode} from "../lib/LedWallMode/LedWallMode";
+import TileButton from "./Ui/TileButton";
 
 export default function LedWallModeSelector() {
     const deviceContext = useDeviceContext();
@@ -35,10 +36,7 @@ export default function LedWallModeSelector() {
             <div className={"flex flex-wrap gap-3 justify-center"}>
                 {modes.map((mode: LedWallMode) => {
                     return (
-                        <button key={mode.index} onClick={() => onModeSelected(mode)}
-                                className={`btn-primary w-24 h-24 ${activeModeIndex === mode.index ? 'outline outline-2 outline-pink-500 outline-offset-1 focus:outline focus:outline-2 focus:outline-pink-500 focus:outline-offset-1' : ''}`}>
-                            {mode.name}
-                        </button>
+                        <TileButton key={mode.index} label={mode.name} onClick={() => onModeSelected(mode)} isSelected={activeModeIndex === mode.index} />
                     )
                 })}
             </div>

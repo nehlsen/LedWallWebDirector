@@ -4,6 +4,7 @@ import {useRouter} from "next/router";
 import useSWR from "swr";
 import fetcher from "../../lib/fetch";
 import {Loading} from "@nextui-org/react";
+import TileButton from "../Ui/TileButton";
 
 export default function DeviceSelector() {
     const deviceContext = useDeviceContext();
@@ -35,9 +36,7 @@ export default function DeviceSelector() {
             <div className={"flex flex-wrap gap-3"}>
                 {allDevices.map((device: Device) => {
                     return (
-                        <button key={device.id} onClick={() => onDeviceSelected(device)} className="btn-primary w-24 h-24">
-                            {device.name}
-                        </button>
+                        <TileButton key={device.id} label={device.name} onClick={() => onDeviceSelected(device)} />
                     )
                 })}
             </div>
