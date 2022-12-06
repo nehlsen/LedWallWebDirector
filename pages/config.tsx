@@ -27,9 +27,14 @@ export default function Config() {
                 <DeviceSystemInfo />
                 <DeviceConfig />
 
-                <br/>
-                <PresetBackup />
-                <PresetRestore />
+                { deviceContext.device.readonly ?
+                    <></> :
+                    <>
+                        <br/>
+                        <PresetBackup />
+                        <PresetRestore />
+                    </>
+                }
             </Content>
         </Layout>
     )
