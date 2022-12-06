@@ -18,6 +18,7 @@ export function url(device: Device|null) {
         presetLoad: `http://${device.hostname}/api/v2/led/preset/load`,
         presetSave: `http://${device.hostname}/api/v2/led/preset/save`,
         presetsDump: `http://${device.hostname}/api/v2/fs/presets.json`,
+        presetDelete: `http://${device.hostname}/api/v2/led/preset/delete`,
         modes: `http://${device.hostname}/api/v2/led/modes`,
         mode: `http://${device.hostname}/api/v2/led/mode`,
         modeOptions: `http://${device.hostname}/api/v2/led/mode/options`
@@ -95,6 +96,15 @@ export async function activateLedWallPreset(device: Device, preset: LedWallPrese
 
 export async function saveLedWallPreset(device: Device, presetName: string) {
     const response = await fetch(url(device).presetSave, {
+        method: 'POST',
+        body: JSON.stringify({name: presetName})
+    });
+
+    return response.json();
+}
+
+export async function deleteLedWallPreset(device: Device, presetName: string) {
+    const response = await fetch(url(device).presetDelete, {
         method: 'POST',
         body: JSON.stringify({name: presetName})
     });
