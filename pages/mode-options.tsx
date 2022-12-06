@@ -5,6 +5,7 @@ import LedWallMode from "../components/LedWallMode";
 import DeviceOfflineGuard from "../components/Device/DeviceOfflineGuard";
 import {useDeviceContext} from "../components/DeviceContext";
 import Link from "next/link";
+import PresetSave from "../components/Preset/PresetSave";
 
 export default function ModeOptions() {
     const deviceContext = useDeviceContext();
@@ -22,6 +23,7 @@ export default function ModeOptions() {
             <Content>
                 <DeviceOfflineGuard />
                 <LedWallMode />
+                <PresetSave />
             </Content>
         </Layout>
     )
