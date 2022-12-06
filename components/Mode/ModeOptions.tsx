@@ -10,6 +10,7 @@ import BarsOptions from "./BarsOptions";
 import FireworksOptions from "./FireworksOptions";
 import FireOptions from "./FireOptions";
 import TextOptions from "./TextOptions";
+import TimeOptions from "./TimeOptions";
 
 interface Params {
     mode: LedWallMode
@@ -53,6 +54,10 @@ export default function ModeOptions({mode}: Params) {
     } else if (modeUtils.isModeText(mode)) {
         return (
             <TextOptions options={mode.options} changeHandler={(options) => onChangeHandler(options)} />
+        )
+    } else if (modeUtils.isModeTime(mode)) {
+        return (
+            <TimeOptions options={mode.options} changeHandler={(options) => onChangeHandler(options)} />
         )
     } else if (modeUtils.isModeStatus(mode)) {
         return (
