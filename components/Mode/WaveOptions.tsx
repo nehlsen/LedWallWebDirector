@@ -1,5 +1,19 @@
 import {OptionsSlider8bit} from "./Options/OptionsSlider";
 import {OptionsRange8bit} from "./Options/OptionsRange";
+import {OptionsSelect} from "./Options/OptionsSelect";
+
+enum WaveMode {
+    Horizontal = 0,
+    Vertical = 1,
+    RadialCircle = 2,
+    RadialRect = 3,
+    Plane = 4,
+}
+
+enum WaveDirection {
+    Forward = 0,
+    Reverse = 1,
+}
 
 function scale (number, inMin, inMax, outMin, outMax) {
     return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
@@ -19,6 +33,18 @@ function hsvToHsl({h, s, v}: {h: number, s: number, v: number}): {h: number, s: 
 }
 
 export default function WaveOptions({options, changeHandler}: {options: object, changeHandler: Function}) {
+    const waveModeChoices = [
+        { key: WaveMode.Horizontal, label: "Horizontal" },
+        { key: WaveMode.Vertical, label: "Vertical" },
+        { key: WaveMode.RadialCircle, label: "Radial Circle" },
+        { key: WaveMode.RadialRect, label: "Radial Rectangular" },
+        { key: WaveMode.Plane, label: "Plane" },
+    ];
+    const waveDirectionChoices = [
+        { key: WaveDirection.Forward, label: "Forward" },
+        { key: WaveDirection.Reverse, label: "Reverse" },
+    ];
+
     const hsl = (title: string) => {
         const hsv = {
             h: options["colorHue" + title],
@@ -32,10 +58,8 @@ export default function WaveOptions({options, changeHandler}: {options: object, 
 
     return (
         <div>
-            {/* TODO mode: select */}
-            <OptionsSlider8bit label={"wave Mode"} name={"waveMode"} options={options} changeHandler={changeHandler} />
-            {/* TODO direction: select */}
-            <OptionsSlider8bit label={"wave Direction"} name={"waveDirection"} options={options} changeHandler={changeHandler} />
+            <OptionsSelect label={"wave Mode"} name={"waveMode"} choices={waveModeChoices} options={options} changeHandler={changeHandler} />
+            <OptionsSelect label={"wave Direction"} name={"waveDirection"} choices={waveDirectionChoices} options={options} changeHandler={changeHandler} />
 
             <OptionsSlider8bit label={"wave Length"} name={"waveLength"} options={options} changeHandler={changeHandler} />
             <OptionsSlider8bit label={"speed"} name={"speed"} options={options} changeHandler={changeHandler} />
