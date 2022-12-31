@@ -8,6 +8,8 @@ import PresetBackup from "../components/Preset/PresetBackup";
 import PresetRestore from "../components/Preset/PresetRestore";
 import {useDeviceContext} from "../components/DeviceContext";
 import Link from "next/link";
+import OtaUpdater from "../components/Device/OtaUpdater";
+import PresetChangerConfig from "../components/Preset/PresetChangerConfig";
 
 export default function Config() {
     const deviceContext = useDeviceContext();
@@ -25,7 +27,9 @@ export default function Config() {
             <Content>
                 <DeviceOfflineGuard />
                 <DeviceSystemInfo />
+                <OtaUpdater />
                 <DeviceConfig />
+                <PresetChangerConfig />
 
                 { deviceContext.device.readonly ?
                     <></> :
@@ -35,6 +39,7 @@ export default function Config() {
                         <PresetRestore />
                     </>
                 }
+                <button onClick={() => {deviceContext.device.readonly = !deviceContext.device.readonly;}}>Yeah</button>
             </Content>
         </Layout>
     )

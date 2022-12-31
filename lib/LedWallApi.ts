@@ -5,6 +5,7 @@ import fetcher from "./fetch";
 import {LedWallPreset} from "./LedWallPreset";
 import {LedWallConfig} from "./LedWallConfig";
 import {LedWallMode} from "./LedWallMode/LedWallMode";
+import {LedWallPresetChangerOptions} from "./LedWallPresetChangerOptions";
 
 export function url(device: Device|null) {
     if (!device) {
@@ -14,11 +15,15 @@ export function url(device: Device|null) {
     return {
         systemInfo: `http://${device.hostname}/api/v2/system/info`,
         config: `http://${device.hostname}/api/v2/config`,
+        otaUpdate: `http://${device.hostname}/api/v2/ota`,
+
         presets: `http://${device.hostname}/api/v2/led/presets`,
         presetLoad: `http://${device.hostname}/api/v2/led/preset/load`,
         presetSave: `http://${device.hostname}/api/v2/led/preset/save`,
         presetsDump: `http://${device.hostname}/api/v2/fs/presets.json`,
         presetDelete: `http://${device.hostname}/api/v2/led/preset/delete`,
+        presetChangerOptions: `http://${device.hostname}/api/v2/led/presetChanger/options`,
+
         modes: `http://${device.hostname}/api/v2/led/modes`,
         mode: `http://${device.hostname}/api/v2/led/mode`,
         modeOptions: `http://${device.hostname}/api/v2/led/mode/options`
@@ -59,6 +64,15 @@ export function useLedWallConfig(device: Device): {
         isLoading: !error && !data,
         isError: error
     }
+}
+
+export async function pushLedWallOtaUpdateUrl(device: Device, otaUpdateUrl: string) {
+    const response = await fetch(url(device).otaUpdate, {
+        method: 'POST',
+        body: JSON.stringify({url: otaUpdateUrl})
+    });
+
+    return response.json();
 }
 
 export function useLedWallPresets(device: Device): {
@@ -107,6 +121,33 @@ export async function deleteLedWallPreset(device: Device, presetName: string) {
     const response = await fetch(url(device).presetDelete, {
         method: 'POST',
         body: JSON.stringify({name: presetName})
+    });
+
+    return response.json();
+}
+
+export function useLedWallPresetChangerOptions(device: Device): {
+    presetChangerOptions: LedWallPresetChangerOptions,
+    isLoading: boolean,
+    isError: boolean
+} {
+    const { data, error } = useSWR<LedWallPresetChangerOptions>(
+        url(device).presetChangerOptions,
+        fetcher,
+        { refreshInterval: 60000 }
+    );
+
+    return {
+        presetChangerOptions: data,
+        isLoading: !error && !data,
+        isError: error
+    }
+}
+
+export async function setLedWallPresetChangerOptions(device: Device, presetChangerOptions: LedWallPresetChangerOptions) {
+    const response = await fetch(url(device).presetChangerOptions, {
+        method: 'POST',
+        body: JSON.stringify(presetChangerOptions)
     });
 
     return response.json();
